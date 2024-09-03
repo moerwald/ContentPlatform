@@ -12,7 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(o =>
-    o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+{
+    var cs = builder.Configuration.GetConnectionString("Database");
+    o.UseNpgsql(cs);
+});
 
 var assembly = typeof(Program).Assembly;
 
@@ -53,6 +56,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapCarter();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.Run();

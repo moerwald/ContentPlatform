@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Newsletter.Reporting.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_Database : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,9 +15,9 @@ namespace Newsletter.Reporting.Api.Migrations
                 name: "Articles",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PublishedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    PublishedOnUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,10 +28,10 @@ namespace Newsletter.Reporting.Api.Migrations
                 name: "ArticleEvents",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ArticleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EventType = table.Column<int>(type: "int", nullable: false),
-                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ArticleId = table.Column<Guid>(type: "uuid", nullable: false),
+                    EventType = table.Column<int>(type: "integer", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
